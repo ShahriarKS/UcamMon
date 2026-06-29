@@ -35,7 +35,7 @@ git clone [https://github.com/your-username/ucam-academic-monitor.git](https://g
 2. **Navigate to the project folder:**
 
 ```bash
-cd ucam-academic-monitor
+cd ucam-bot
 
 ```
 
