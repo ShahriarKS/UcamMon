@@ -66,17 +66,10 @@ try:
                     latest_trimester = tri_code
                 valid_rows_data.append((tri_code, cols))
 
-    # 10. PRINT THE FINAL COMBINED ACADEMIC REPORT
-    print("\n==============================================")
-    print("         UCAM ACADEMIC SUMMARY REPORT         ")
-    print("==============================================")
-    print(f" 🎯 Overall CGPA      : {overall_cgpa}")
-    print(f" 🎓 Completed Credit : {completed_credit}")
-    print("----------------------------------------------")
-    print(f" 📅 Results for Latest Trimester: {latest_trimester}")
-    print("----------------------------------------------")
+    # Track published grades for the latest trimester to find the last one
+    published_results = []
+    latest_courses_list = []
     
-    found_any = False
     for tri_code, cols in valid_rows_data:
         if tri_code == latest_trimester:
             course_code = cols[1].text.strip()
@@ -84,13 +77,37 @@ try:
             grade = cols[4].text.strip()
             status = cols[5].text.strip()
             
-            # If the grade cell is empty, fallback to display the course status
+            # Save all recent courses to print later
+            latest_courses_list.append((course_code, course_name, grade, status))
+            
+            # If a grade exists, consider it as a published result
+            if grade:
+                published_results.append((course_code, course_name, grade))
+    
+    # Identify the last published result from the list
+    if published_results:
+        # Taking the last item appended to the list
+        last_course_code, last_course_name, last_grade = published_results[-1]
+        last_published_text = f"🔥 Last Published Result: {last_course_code} - {last_course_name} (Grade: {last_grade})"
+    else:
+        last_published_text = "🔥 Last Published Result: No results published yet for this trimester."
+
+    # 10. PRINT THE FINAL COMBINED ACADEMIC REPORT
+    print("\n==============================================")
+    print("         UCAM ACADEMIC SUMMARY REPORT         ")
+    print("==============================================")
+    print(f" 🎯 Overall CGPA      : {overall_cgpa}")
+    print(f" 🎓 Completed Credit : {completed_credit}")
+    print(f" {last_published_text}")
+    print("----------------------------------------------")
+    print(f" 📅 Results for Latest Trimester: {latest_trimester}")
+    print("----------------------------------------------")
+    
+    if latest_courses_list:
+        for course_code, course_name, grade, status in latest_courses_list:
             final_grade = grade if grade else status
-            
             print(f" 📖 {course_code} - {course_name} | Grade/Status: {final_grade}")
-            found_any = True
-            
-    if not found_any:
+    else:
         print(" No courses found for the latest trimester.")
                 
     print("==============================================\n")
