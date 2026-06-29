@@ -64,7 +64,7 @@ pip install selenium
 ### Clone the repository
 
 ```bash
-git clone https://github.com/ShahriarKS/ucam_bot.git
+git clone https://github.com/ShahriarKS/ucammon.git
 ```
 
 ### Go to the project directory
