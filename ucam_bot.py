@@ -1,39 +1,44 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.keys import Keys # Keyboard keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-# ১. অটোমেটিক ক্রোম ব্রাউজার ওপেন করা
+# 1. Open the Chrome browser automatically
 options = webdriver.ChromeOptions()
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+driver = webdriver.Chrome(options=options)
 
 try:
-    # ২. UCAM এর লগইন পেজে যাওয়া
-    driver.get("https://ucam.uiu.ac.bd")
-    time.sleep(3) # পেজ লোড হওয়ার জন্য ৩ সেকেন্ড অপেক্ষা
+    # 2. Navigate to the UCAM login page
+    driver.get("https://ucam.uiu.ac.bd/Security/Login.aspx")
     
-    # ৩. আপনার আইডি, পাসওয়ার্ড বক্স এবং লগইন বাটনের ID বসান
-    # (এখানে "id_input_id", "password_input_id", "login_button_id" এর জায়গায় 
-    # আপনি UCAM লগইন পেজ ইনস্পেক্ট করে যে আসল ID-গুলো পেয়েছেন, সেগুলো লিখে দিন)
-    username_field = driver.find_element(By.ID, "id_input_id") 
-    password_field = driver.find_element(By.ID, "password_input_id")
-    login_button = driver.find_element(By.ID, "login_button_id")
+    # 3. Wait up to 10 seconds for the login fields to appear
+    print("Waiting for the UCAM login page to load...")
+    wait = WebDriverWait(driver, 10)
     
-    # ৪. বক্সে আপনার স্টুডেন্ট আইডি ও পাসওয়ার্ড টাইপ করা
-    username_field.send_keys("আপনার_স্টুডেন্ট_আইডি") 
-    password_field.send_keys("আপনার_পাসওয়ার্ড")
+    # Locate UserID and Password using the correct IDs you found
+    username_field = wait.until(EC.presence_of_element_located((By.ID, "logMain_UserName")))
+    password_field = driver.find_element(By.ID, "logMain_Password")
     
-    # ৫. লগইন বাটনে ক্লিক করা
-    login_button.click()
+    # 4. Type Student ID
+    print("Typing Student ID...")
+    username_field.send_keys("0112410092") 
     
-    # লগইন হওয়ার পর ড্যাশবোর্ড লোড হতে ৫ সেকেন্ড সময় দেওয়া হলো
-    time.sleep(5)
-    print("লগইন সফল হয়েছে এবং ড্যাশবোর্ডে এসেছে!")
+    # 5. Type Password and Press ENTER Key immediately
+    print("Typing Password and pressing Enter...")
+    password_field.send_keys("SaikatUIU1!")
+    password_field.send_keys(Keys.ENTER) # It simulates pressing the physical Enter key
+    
+    # Wait 8 seconds to let the dashboard completely load after logging in
+    print("Waiting for dashboard to load...")
+    time.sleep(8)
+    print("\n[✔] Login successful! Entered the dashboard.")
 
 except Exception as e:
-    print("কোথাও একটা ভুল হয়েছে:", e)
+    print("\n[!] An error occurred:")
+    print(e)
 
 finally:
-    # কাজ শেষে ব্রাউজার বন্ধ করা
+    # Close the browser session
     driver.quit()
