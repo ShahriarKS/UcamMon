@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['ucam_bot.py'],
+    ['ucammon.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='ucam_bot',
+    name='ucammon',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
