@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+.env/
+
+# Build
+build/
+dist/
+
+# PyInstaller
+*.spec
+
+# User data
+ucammon_config.json
+grades_history.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
