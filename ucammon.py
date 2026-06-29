@@ -18,7 +18,7 @@ CHECK_INTERVAL_MINUTES = 30
 class UcamMonitorApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("UIU UCAM Academic Monitor")
+        self.root.title("UIU UCAM Grade Monitor")
         self.root.geometry("850x680")
         self.root.configure(bg="#f4f6f9")
         
@@ -30,7 +30,7 @@ class UcamMonitorApp:
         self.animation_running = False
         
         # --- TITLE ---
-        title_label = tk.Label(root, text="UCAM Academic Dashboard", font=("Arial", 22, "bold"), fg="#2c3e50", bg="#f4f6f9")
+        title_label = tk.Label(root, text="UCAM Grade Dashboard", font=("Arial", 22, "bold"), fg="#2c3e50", bg="#f4f6f9")
         title_label.pack(pady=15)
         
         # --- MULTI-ACCOUNT INPUT AREA ---
