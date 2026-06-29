@@ -1,4 +1,4 @@
-UcamMon 🎓
+**UcamMon** 🎓
 UcamMon is an automated Python-based desktop application designed for students of United International University (UIU). It monitors the UCAM portal in the background to track academic grades and notifies you immediately if any new updates are detected.
 
 ## 🚀 Features
