@@ -184,8 +184,12 @@ class UcamMonitorApp:
         self.root.after(1000, self.update_countdown)
 
     def trigger_background_check(self):
+        self.remaining_seconds = CHECK_INTERVAL_MINUTES * 60
+        
         self.is_checking = True
         self.timer_label.config(text="🔄 Checking UCAM...")
+        self.status_label.config(text="Bot Status: Checking UCAM...")
+    
         threading.Thread(target=self.run_selenium_bot, daemon=True).start()
 
     def run_selenium_bot(self):
