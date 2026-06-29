@@ -1,6 +1,5 @@
-# UIU UCAM Academic Monitor
-
-An automated Python-based desktop application designed for students of United International University (UIU). This tool monitors the [UCAM portal](https://ucam.uiu.ac.bd/) in the background to track academic grades and notifies the user immediately if any new updates are detected.
+UcamMon 🎓
+UcamMon is an automated Python-based desktop application designed for students of United International University (UIU). It monitors the UCAM portal in the background to track academic grades and notifies you immediately if any new updates are detected.
 
 ## 🚀 Features
 * **Automated Tracking:** Periodically checks the UCAM portal for grade updates every 30 minutes.
@@ -26,14 +25,14 @@ To run this project, you need:
 2. **Navigate to the project folder:**
 
 ```bash
-cd ucam_bot
+cd UcamMon
 
 ```
 
 3. **Run the application:**
 
 ```bash
-python ucam_bot.py
+python ucammon.py
 
 ```
 
