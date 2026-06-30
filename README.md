@@ -51,12 +51,6 @@ Before running the application, ensure you have:
 - ChromeDriver (compatible with your Chrome version)
 - Selenium
 
-Install Selenium:
-
-```bash
-pip install selenium
-```
-
 ---
 
 ## 🚀 Installation
@@ -76,7 +70,7 @@ cd UcamMon
 ### Install dependencies
 
 ```bash
-pip install selenium
+python -m pip install -r requirements.txt
 ```
 
 ### Run the application
